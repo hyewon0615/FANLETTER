@@ -8,7 +8,6 @@ const LetterBoxStyle = styled.ul`
   align-items: center;
 `
 
-
 function LetterBox({ letters, idolLettersShown, singerLettersShown, actorLettersShown, allLettersShown }) {
   return (
     <LetterBoxStyle>

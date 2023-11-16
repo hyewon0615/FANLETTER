@@ -65,7 +65,7 @@ function Form({ setLetters, letters }) {
       setLetters([...letters, newLetter])
       setContent("")
       setNickname("")
-      // setAvatar("")
+
     }
 
   }
@@ -73,7 +73,6 @@ function Form({ setLetters, letters }) {
     <FormStyle>
       <div>이름 : <InputStyle value={nickname} onChange={nicknameHanldler} /></div>
       <div>내용 : <InputStyle value={content} onChange={contentHanldler} /></div>
-      {/* <div>프로필 사진 : <input value={avatar} onChange={avartaHanldler} /></div> */}
       <div>
         <label for="entertainer">누구에게 보낼 실 건가요? </label>
         <SelectStyle id='entertainer' value={writedTo} onChange={writedToHanldler} required>

@@ -4,8 +4,10 @@ import { useParams } from 'react-router-dom'
 import styled from 'styled-components';
 const EditTextStyle = styled.textarea`
   width: 500px;
-  height: 150px;
-  margin: 10px;
+  height: 130px;
+  margin-bottom: 10px;
+  border: 2px solid greenyellow;
+  padding: 15px;
 `
 const TextStyle = styled.p`
   width: 500px;
@@ -17,10 +19,27 @@ const ProfileStyle = styled.div`
   flex-direction: row;
   align-items: center;
 `
+const Modalstyle =styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #bcc9a3;
+
+`
+
 const DetailStyle = styled.div`
+  position: relative;
+  width: 600px;
+  height: 300px;
+  background-color: white;
+  padding: 20px;
+  margin: 120px auto auto auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+
 `
 const DetailImg = styled.img`
   margin: 10px;
@@ -67,6 +86,7 @@ function Detail({ letters, setLetters }) {
   const [editLetter, setEditLetter] = useState(foundLetter.content)
 
   const editTextHandler = (event) => { setEditLetter(event.target.value) }
+
   const finishEditHandler = (id) => {
     const editcontent = letters.map((item) => ({
       ...item, content: item.id === id ? editLetter : item.content
@@ -81,10 +101,11 @@ function Detail({ letters, setLetters }) {
 
   }
   return (
-    <div>
+    <Modalstyle>
       <DetailButton onClick={() => { navigate(`/`) }}>
         Home
       </DetailButton>
+
       <DetailStyle key={foundLetter.id}>
 
         <ProfileStyle>
@@ -95,15 +116,12 @@ function Detail({ letters, setLetters }) {
           </div>
 
         </ProfileStyle>
-
-        <div>
+   
           {
             isEdit ?
-              <EditTextStyle  value={editLetter} onChange={editTextHandler}>{foundLetter.content}</EditTextStyle> :
+              <EditTextStyle value={editLetter} onChange={editTextHandler}>{foundLetter.content}</EditTextStyle> :
               <TextStyle>{foundLetter.content}</TextStyle>
           }
-
-        </div>
 
         {isEdit ? <DetailButton onClick={() => (finishEditHandler(foundLetter.id))}>수정완료</DetailButton> : <div>
           <DetailButton onClick={() => { setIsEdit(!isEdit) }}>수정</DetailButton>
@@ -111,7 +129,7 @@ function Detail({ letters, setLetters }) {
         </div>}
 
       </DetailStyle>
-    </div>
+    </Modalstyle>
   )
 }
 
