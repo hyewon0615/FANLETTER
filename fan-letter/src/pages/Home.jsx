@@ -6,7 +6,7 @@ import LetterBox from 'components/LetterBox'
 import Footer from 'components/Footer'
 
 
-function Home({ letters, setLetters }) {
+function Home() {
 
 
   const [allLettersShown, setAllLettersShown] = useState(true)
@@ -23,15 +23,13 @@ function Home({ letters, setLetters }) {
         setSingerLettersShown={setSingerLettersShown}
         setAllLettersShown={setAllLettersShown}
       />
-      <Form letters={letters} setLetters={setLetters} />
+      <Form/>
 
       <LetterBox
         idolLettersShown={idolLettersShown}
         actorLettersShown={actorLettersShown}
         singerLettersShown={singerLettersShown}
         allLettersShown={allLettersShown}
-        letters={letters}
-        setLetters={setLetters}
       />
       {/* <Footer /> */}
 

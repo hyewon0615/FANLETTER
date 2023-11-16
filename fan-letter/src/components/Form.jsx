@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import uuid from 'react-uuid'
 import defaultAvarta from'assets/defaultAvarta.png'
 import styled from 'styled-components'
+import { Context } from 'shared/Context'
 
 const FormStyle = styled.form`
  margin-top:10px;
@@ -29,7 +30,8 @@ const SelectStyle = styled.select`
   border-radius: 15px;
 `
 
-function Form({ setLetters, letters }) {
+function Form() {
+  const contextData = useContext(Context)
   const writedToSelectList = ["아이돌", "솔로가수", "배우"]
   const [writedTo, setWritedTo] = useState("아이돌")
 
@@ -62,7 +64,7 @@ function Form({ setLetters, letters }) {
         "isEdit": false
       }
 
-      setLetters([...letters, newLetter])
+      contextData.setLetters([...contextData.letters, newLetter])
       setContent("")
       setNickname("")
 

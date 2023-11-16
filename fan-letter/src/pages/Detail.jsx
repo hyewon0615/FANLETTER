@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
+import { Context } from 'shared/Context';
 import styled from 'styled-components';
 const EditTextStyle = styled.textarea`
   width: 500px;
@@ -62,10 +63,11 @@ const DetailButton = styled.button`
   margin: 10px 0px 10px 10px;
 `
 
-function Detail({ letters, setLetters }) {
+function Detail() {
+  const contextData= useContext(Context)
   const params = useParams();
 
-  const foundLetter = letters.find((letter) => {
+  const foundLetter = contextData.letters.find((letter) => {
     return letter.id === params.id
   });
 
@@ -74,8 +76,8 @@ function Detail({ letters, setLetters }) {
 
   const removeLetterHandler = (id) => {
     if (window.confirm("정말로 지우시겠습니까?")) {
-      const filteredLetter = letters.filter(letter => letter.id !== id)
-      setLetters(filteredLetter)
+      const filteredLetter = contextData.letters.filter(letter => letter.id !== id)
+      contextData.setLetters(filteredLetter)
       navigate(`/`)
     } else {
       alert("취소되었습니다")
@@ -88,14 +90,14 @@ function Detail({ letters, setLetters }) {
   const editTextHandler = (event) => { setEditLetter(event.target.value) }
 
   const finishEditHandler = (id) => {
-    const editcontent = letters.map((item) => ({
+    const editcontent = contextData.letters.map((item) => ({
       ...item, content: item.id === id ? editLetter : item.content
 
     }))
     if (editLetter === foundLetter.content) {
       alert("수정된 부분이 없습니다.")
     } else {
-      setLetters(editcontent)
+      contextData.setLetters(editcontent)
       setIsEdit(false)
     }
 

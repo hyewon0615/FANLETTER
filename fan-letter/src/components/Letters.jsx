@@ -1,6 +1,7 @@
 import styled from 'styled-components'
-import React from 'react'
+import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Context } from 'shared/Context'
 
 const LetterImg = styled.img`
   width: 30px;
@@ -32,12 +33,13 @@ const TimeStyle = styled.p`
 `
 
 
-function Letters({ letters, writedTo, }) {
+function Letters({writedTo}) {
   const navigate = useNavigate();
+  const contextData = useContext(Context)
 
   return (
     <div>
-      {letters
+      {contextData.letters
         .filter((L) => {
           return writedTo.includes(L.writedTo)
         })
