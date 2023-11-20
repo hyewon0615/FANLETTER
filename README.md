@@ -16,7 +16,24 @@ detail => data에서 선택한 카드와 일치한 아이디를 가진 데이터
 
 ### 주요기능(CRUD)
 편지 추가하기 Create
+     const addLetter = function (event) {
+    event.preventDefault()
+    const newLetter = {
+      "createdAt": `${years}-${month}-${day} ${hours}:${minutes}`,
+      "nickname": nickname,
+      "avatar": avatar,
+      "content": content,
+      "writedTo": writedTo,
+      "id": uuid()
+    }
 
+    console.log(newLetter)
+    setLetters([...letters, newLetter])
+    setContent("")
+    setNickname("")
+    setAvatar("")
+
+  }
 편지 출력하기 Read
 
 편지 수정하기 Update
