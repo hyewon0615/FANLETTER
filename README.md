@@ -15,24 +15,17 @@ Home => 전체 컴포넌트를 가짐 (LetterBox에 하위요소인 Letters 제�
 detail => data에서 선택한 카드와 일치한 아이디를 가진 데이터로 상세페이지를 읽어냄
 
 ### 주요기능(CRUD)
-편지 추가하기 Create
-     ```const addLetter = function (event) {
-    event.preventDefault()
-    const newLetter = {
-      "createdAt": `${years}-${month}-${day} ${hours}:${minutes}`,
-      "nickname": nickname,
-      "avatar": avatar,
-      "content": content,
-      "writedTo": writedTo,
-      "id": uuid()
-    }
-    setLetters([...letters, newLetter])
-    setContent("")
-    setNickname("")
-    setAvatar("")
+#### 편지 추가하기 Create
 
-  }```
-편지 출력하기 Read
+1. Form만들기 input, selector, button
+2. input state선언하기 value onChange`<input value={nickname} onChange={nicknameHanldler} />`
+3. 클릭이벤트 만들기 필요한 요소 객체로 넣기
+4. state변경 로직 작성
+
+   
+#### 편지 출력하기 Read
+1. data state 선언하기
+2. 
 
 편지 수정하기 Update
 
