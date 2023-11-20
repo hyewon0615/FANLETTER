@@ -1,8 +1,9 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import uuid from 'react-uuid'
 import defaultAvarta from'assets/defaultAvarta.png'
 import styled from 'styled-components'
-import { Context } from 'shared/Context'
+import { useDispatch } from 'react-redux'
+import { addLetter } from 'redux/modules/fanletter'
 
 const FormStyle = styled.form`
  margin-top:10px;
@@ -31,7 +32,6 @@ const SelectStyle = styled.select`
 `
 
 function Form() {
-  const contextData = useContext(Context)
   const writedToSelectList = ["아이돌", "솔로가수", "배우"]
   const [writedTo, setWritedTo] = useState("아이돌")
 
@@ -48,13 +48,16 @@ function Form() {
   const month = date.getMonth();
   const hours = date.getHours();
   const minutes = date.getMinutes();
+const dispatch =useDispatch();
 
-  const addLetter = function (event) {
+  const addLetterHandler = function (event) {
     event.preventDefault()
     if (nickname === "" || content === "") {
       alert("닉네임과 내용은 필수입니다!")
     } else {
-      const newLetter = {
+
+      dispatch(
+        addLetter({
         "createdAt": `${years}-${month + 1}-${day} ${hours}:${minutes}`,
         "nickname": nickname,
         "avatar": defaultAvarta,
@@ -62,13 +65,13 @@ function Form() {
         "writedTo": writedTo,
         "id": uuid(),
         "isEdit": false
-      }
-
-      contextData.setLetters([...contextData.letters, newLetter])
+        })
+      )
       setContent("")
       setNickname("")
 
     }
+    console.log("form randering")
 
   }
   return (
@@ -83,9 +86,9 @@ function Form() {
           })}
         </SelectStyle>
       </div>
-      <AddButton onClick={addLetter}>등록</AddButton>
+      <AddButton onClick={addLetterHandler}>등록</AddButton>
     </FormStyle>
   )
 }
 
-export default Form
+export default React.memo(Form)

@@ -1,8 +1,9 @@
-import { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom'
-import { useParams } from 'react-router-dom'
-import { Context } from 'shared/Context';
+import { useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom'
 import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux'
+import { deleteLetter, editLetter } from 'redux/modules/fanletter';
+
 const EditTextStyle = styled.textarea`
   width: 500px;
   height: 130px;
@@ -20,7 +21,7 @@ const ProfileStyle = styled.div`
   flex-direction: row;
   align-items: center;
 `
-const Modalstyle =styled.div`
+const Modalstyle = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -64,42 +65,55 @@ const DetailButton = styled.button`
 `
 
 function Detail() {
-  const contextData= useContext(Context)
+
+  const fanletter = useSelector((state) => {
+    return state.fanletter;
+  })
+
   const params = useParams();
 
-  const foundLetter = contextData.letters.find((letter) => {
+  const foundLetter = fanletter.letters.find((letter) => {
     return letter.id === params.id
   });
 
 
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const removeLetterHandler = (id) => {
+    console.log("delete")
+
     if (window.confirm("정말로 지우시겠습니까?")) {
-      const filteredLetter = contextData.letters.filter(letter => letter.id !== id)
-      contextData.setLetters(filteredLetter)
+      dispatch(
+        deleteLetter(id)
+      )
       navigate(`/`)
+
     } else {
       alert("취소되었습니다")
     }
   }
 
   const [isEdit, setIsEdit] = useState(false)
-  const [editLetter, setEditLetter] = useState(foundLetter.content)
+  const [editedLetter, setEditedLetter] = useState(foundLetter.content)
 
-  const editTextHandler = (event) => { setEditLetter(event.target.value) }
+  const editTextHandler = (event) => { setEditedLetter(event.target.value) }
 
   const finishEditHandler = (id) => {
-    const editcontent = contextData.letters.map((item) => ({
-      ...item, content: item.id === id ? editLetter : item.content
+    console.log("edit")
+    const editcontent = fanletter.letters.map((item) => ({
+      ...item, content: item.id === id ? editedLetter : item.content
 
     }))
-    if (editLetter === foundLetter.content) {
+    if (editedLetter === foundLetter.content) {
       alert("수정된 부분이 없습니다.")
     } else {
-      contextData.setLetters(editcontent)
+      dispatch(
+        editLetter(editcontent)
+      )
       setIsEdit(false)
     }
+    console.log("detail randering")
 
   }
   return (
@@ -118,14 +132,14 @@ function Detail() {
           </div>
 
         </ProfileStyle>
-   
-          {
-            isEdit ?
-              <EditTextStyle value={editLetter} onChange={editTextHandler}>{foundLetter.content}</EditTextStyle> :
-              <TextStyle>{foundLetter.content}</TextStyle>
-          }
 
-        {isEdit ? <DetailButton onClick={() => (finishEditHandler(foundLetter.id))}>수정완료</DetailButton> : <div>
+        {
+          isEdit ?
+            <EditTextStyle value={editedLetter} onChange={editTextHandler}>{foundLetter.content}</EditTextStyle> :
+            <TextStyle>{foundLetter.content}</TextStyle>
+        }
+        {/* onClick={() => (finishEditHandler(foundLetter.id))} */}
+        {isEdit ? <DetailButton onClick={() => { finishEditHandler(foundLetter.id) }}>수정완료</DetailButton> : <div>
           <DetailButton onClick={() => { setIsEdit(!isEdit) }}>수정</DetailButton>
           <DetailButton onClick={() => (removeLetterHandler(foundLetter.id))}>삭제</DetailButton>
         </div>}

@@ -7,16 +7,14 @@ const LetterBoxStyle = styled.ul`
   flex-direction: column;
   align-items: center;
 `
+function LetterBox() {
+  console.log("letterBox randering")
 
-function LetterBox({idolLettersShown, singerLettersShown, actorLettersShown, allLettersShown }) {
   return (
     <LetterBoxStyle>
-      {allLettersShown === true ? <Letters  writedTo={"아이돌 솔로가수 배우"} /> : ""}
-      {idolLettersShown === true ? <Letters  writedTo={"아이돌"} /> : ""}
-      {singerLettersShown === true ? <Letters writedTo={"솔로가수"} /> : ""}
-      {actorLettersShown === true ? <Letters  writedTo={"배우"} /> : ""}
+      <Letters/>
     </LetterBoxStyle>
   )
 }
 
-export default LetterBox
+export default React.memo(LetterBox) 
