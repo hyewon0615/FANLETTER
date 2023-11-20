@@ -26,8 +26,6 @@ detail => data에서 선택한 카드와 일치한 아이디를 가진 데이터
       "writedTo": writedTo,
       "id": uuid()
     }
-
-    console.log(newLetter)
     setLetters([...letters, newLetter])
     setContent("")
     setNickname("")
