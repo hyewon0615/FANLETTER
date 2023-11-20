@@ -16,10 +16,10 @@ detail => data에서 선택한 카드와 일치한 아이디를 가진 데이터
 
 ### 주요기능(CRUD)
 편지 추가하기 Create
-    export const addLetter = (payload)=>{
-    return {type: ADD_LETTER, payload}
-    }
-    case ADD_LETTER:
+            export const addLetter = (payload)=>{
+            return {type: ADD_LETTER, payload}
+            }
+            case ADD_LETTER:
             return {
                 ...state,
                 letters:[...state.letters, action.payload]
