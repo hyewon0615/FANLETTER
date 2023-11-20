@@ -34,9 +34,6 @@ const TimeStyle = styled.p`
   text-align: right;
   color: #626262;
 `
-const emoStyle = styled.p`
-  font-size: 150px;
-`
 
 function Letters() {
 
@@ -44,11 +41,9 @@ function Letters() {
   const fanletter = useSelector((state) => {
     return state.fanletter;
   })
-  // console.log(fanletter)
   const writeToselect = useSelector((state) => {
     return state.filteredLetter;
   })
-  console.log("letters randering")
 
   const filteredLetter = fanletter.letters
     .filter((L) => {
@@ -58,12 +53,9 @@ function Letters() {
   return (
     <>
       {
-        // filteredLetter얘가 아무것도 없어..
-        // 근데 map돌려... 
-        filteredLetter.length === 0 ? (<LetterStyle direction="column"><emoStyle>🙅‍♀️</emoStyle>편지가 없습니다! 첫 편지를 작성해주세요!</LetterStyle>) : (
+        filteredLetter.length === 0 ? (<LetterStyle direction="column"><span>🙅‍♀️</span>편지가 없습니다! 첫 편지를 작성해주세요!</LetterStyle>) : (
           filteredLetter
             .map((letter) => (
-              // 여기서 하는거 아님돠
               <LetterStyle direction="row" key={letter.id} onClick={() => { navigate(`/detail/${letter.id}`) }}>
                 <div>
                   <LetterImg src={letter.avatar} alt=''></LetterImg>

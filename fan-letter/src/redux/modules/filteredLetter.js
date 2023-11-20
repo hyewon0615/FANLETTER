@@ -1,6 +1,6 @@
-
+const FILTERED_LETTER ="FILTERED_LETTER"
 export const writeToSelect = (payload)=>{
-    return {type : "FILTERED_LETTER", payload}
+    return {type : FILTERED_LETTER, payload}
 }
 
 const initialState = {
@@ -10,7 +10,7 @@ const initialState = {
 
 const filteredLetter = (state = initialState, action)=>{
     switch(action.type){
-        case "FILTERED_LETTER":
+        case FILTERED_LETTER:
            
             return {
                 ...state, 

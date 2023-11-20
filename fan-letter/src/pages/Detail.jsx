@@ -103,7 +103,6 @@ function Detail() {
     console.log("edit")
     const editcontent = fanletter.letters.map((item) => ({
       ...item, content: item.id === id ? editedLetter : item.content
-
     }))
     if (editedLetter === foundLetter.content) {
       alert("수정된 부분이 없습니다.")
@@ -114,7 +113,6 @@ function Detail() {
       setIsEdit(false)
     }
     console.log("detail randering")
-
   }
   return (
     <Modalstyle>
