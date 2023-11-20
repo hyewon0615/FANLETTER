@@ -30,4 +30,7 @@ module을 제외하고 camelCase 이용하기
 #### modal 
  page에 모달 인척하는 애만 넣어둠. 모양만 모달임
 
+#### 전역 스타일링 
+box-sizing 안함..
+
 
