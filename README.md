@@ -1,4 +1,6 @@
 
+https://github.com/hyewon0615/FANLETTER/assets/146814055/3a5f8659-dfbf-490d-b066-ccd39697dadf
+
 ### 팬레터 만들기
 props-drilling-> context -> redux순으로 기능구현하기
 전역상태관리 라이브러리 익숙해지기
@@ -49,8 +51,7 @@ detail => data에서 선택한 카드와 일치한 아이디를 가진 데이터
 
 
 
-Uploading 제목 없는 동영상 - Clipchamp로 제작 (4).mp4…
-
+![Uploading 시현.gif…]()
 
 
 
