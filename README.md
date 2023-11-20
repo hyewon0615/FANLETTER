@@ -51,10 +51,6 @@ detail => data에서 선택한 카드와 일치한 아이디를 가진 데이터
 
 
 
-![Uploading 시현.gif…]()
-
-
-
 ### 네이밍 문법
 module을 제외하고 camelCase 이용하기 
 
