@@ -1,20 +1,19 @@
-import React from 'react'
-import Letters from 'components/Letters'
-import styled from 'styled-components'
+import React from "react";
+import Letters from "components/Letters";
+import styled from "styled-components";
 
 const LetterBoxStyle = styled.ul`
   display: flex;
   flex-direction: column;
   align-items: center;
-`
+  min-height: 250px;
+`;
 function LetterBox() {
-  console.log("letterBox randering")
-
   return (
     <LetterBoxStyle>
-      <Letters/>
+      <Letters />
     </LetterBoxStyle>
-  )
+  );
 }
 
-export default React.memo(LetterBox) 
+export default React.memo(LetterBox);

@@ -1,15 +1,6 @@
-import React from 'react'
-import Router from './shared/Router';
-import "./reset.css"
-
-
+import Router from "./shared/Router";
 function App() {
-
-  return (
-    
-      <Router />
-  
-  )
+  return <Router />;
 }
 
-export default App
+export default App;
